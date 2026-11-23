@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JXR to AVIF HDR | Conversor Premium</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="glow-text">JXR <span class="accent">to</span> AVIF</h1>
+            <p class="subtitle">Conversão HDR de alta fidelidade para Photoshop & Web</p>
+        </header>
+
+        <main>
+            <!-- Dropzone: Only visible when no file is selected -->
+            <div id="drop-zone" class="drop-zone">
+                <div class="drop-zone-content">
+                    <div class="icon">📁</div>
+                    <p>Arraste seus arquivos <strong>.jxr</strong> aqui</p>
+                    <span>ou clique para selecionar (suporta múltiplos arquivos)</span>
+                    <input type="file" id="file-input" accept=".jxr" multiple hidden>
+                </div>
+            </div>
+
+            <!-- Preview: Visible after file selection -->
+            <div id="preview-area" class="hidden">
+                <div class="batch-header">
+                    <span id="batch-count" class="batch-title">0 arquivos selecionados</span>
+                    <span id="batch-total-size" class="batch-size">0.0 MB</span>
+                </div>
+
+                <div id="file-list" class="file-list">
+                    <!-- Dynamic file cards generated here -->
+                </div>
+
+                <div class="action-buttons">
+                    <button id="add-more-btn" class="btn-secondary-action">➕ Adicionar mais</button>
+                    <button id="start-btn" class="btn-primary">🚀 Iniciar Conversão (<span id="start-count">0</span>)</button>
+                    <button id="remove-all-btn" class="btn-danger">Limpar Todos</button>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="controls">
+                <div class="control-group">
+                    <label for="speed-range">Ajuste de Qualidade / Velocidade
+                        <span id="speed-value" class="badge">6</span>
+                    </label>
+                    <input type="range" id="speed-range" min="0" max="9" step="1" value="6">
+                    <div class="range-labels">
+                        <span>Lento (Melhor Qualidade)</span>
+                        <span>Rápido (Menos Compressão)</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Console / Status Area -->
+            <div id="status-area" class="hidden">
+                <div class="processing-msg">
+                    <div class="loader"></div>
+                    <p id="current-processing-file">Convertendo arquivos para AVIF HDR...</p>
+                </div>
+
+                <div class="overall-progress-container">
+                    <div class="overall-progress-info">
+                        <span id="progress-status-text">Processando 0 de 0...</span>
+                        <span id="progress-percentage-text">0%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div id="overall-progress-fill" class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="status-actions">
+                    <button id="stop-btn" class="btn-danger btn-stop">🛑 Parar Conversão</button>
+                </div>
+
+                <div class="console-box">
+                    <p class="console-header">Saída do Processo (Shell Output)</p>
+                    <div id="console-log" class="console-content">
+                        <!-- Stream logs here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Result -->
+            <div id="result-area" class="hidden">
+                <div class="success-icon">✓</div>
+                <h3>Conversão Concluída!</h3>
+                <p id="result-summary">Seus metadados HDR foram preservados.</p>
+
+                <div id="results-file-list" class="file-list results-list">
+                    <!-- Results with individual download links will be rendered here -->
+                </div>
+
+                <div class="result-actions">
+                    <button id="download-zip-btn" class="btn-primary btn-zip">📦 Baixar Todos (ZIP)</button>
+                    <button id="new-convert-btn" class="btn-secondary">Converter novos arquivos</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Utilizando <strong>FFmpeg NVENC</strong> (GPU) ou <strong>jxr_to_avif</strong> (CPU) para processamento local de imagens HDR.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
